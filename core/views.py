@@ -1,8 +1,7 @@
-import datetime
-from datetime import timezone
-
-from django.http import HttpRequest, HttpResponse, HttpResponseRedirect
-from django.shortcuts import render, get_object_or_404
+from django.http import (HttpRequest,
+                         HttpResponse,
+                         HttpResponseRedirect)
+from django.shortcuts import get_object_or_404
 from django.urls import reverse_lazy
 from django.views import generic
 
@@ -60,7 +59,8 @@ def mark_as_done(request: HttpRequest, pk: int) -> HttpResponse:
     task.done = True
     task.save()
     return HttpResponseRedirect(
-        request.META.get("HTTP_REFERER", reverse_lazy(viewname="core:task-list"))
+        request.META.get("HTTP_REFERER",
+                         reverse_lazy(viewname="core:task-list"))
     )
 
 
@@ -69,5 +69,6 @@ def mark_as_undo(request: HttpRequest, pk: int) -> HttpResponse:
     task.done = False
     task.save()
     return HttpResponseRedirect(
-        request.META.get("HTTP_REFERER", reverse_lazy(viewname="core:task-list"))
+        request.META.get("HTTP_REFERER",
+                         reverse_lazy(viewname="core:task-list"))
     )

@@ -24,3 +24,6 @@ class Task(models.Model):
 
     def __str__(self):
         return self.task_name
+
+    def is_done(self) -> str:
+        return "Done" if self.done else "Not done"

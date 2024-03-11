@@ -14,6 +14,16 @@
       <a class="btn btn-success" href="{% url "core:task-done" pk=task.id %}">Complete</a>
       {% endif %}
     </h3>
+    {% if task.done %}
+    <p> 
+      <span style="color: green">{{ task.is_done }}</span>
+    </p>  
+    {% else %}  
+    <p>
+      <span style="color: red">{{ task.is_done }}</span>
+    </p>  
+    {% endif %}
+
     <p>{{ task.description }}</p>
     <span>Created: {{ task.created_at }}</span>
     {% if task.deadline %}
