@@ -13,7 +13,9 @@ class Tag(models.Model):
 
 
 class Task(models.Model):
-    task_name = models.CharField(max_length=255,)
+    task_name = models.CharField(
+        max_length=255,
+    )
     description = models.TextField()
     deadline = models.DateField(null=True, blank=True)
     done = models.BooleanField(default=False)

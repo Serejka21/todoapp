@@ -6,17 +6,19 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('core', '0001_initial'),
+        ("core", "0001_initial"),
     ]
 
     operations = [
         migrations.AlterModelOptions(
-            name='tag',
-            options={'verbose_name': 'Tag', 'verbose_name_plural': 'Tags'},
+            name="tag",
+            options={"verbose_name": "Tag", "verbose_name_plural": "Tags"},
         ),
         migrations.AddField(
-            model_name='task',
-            name='tag',
-            field=models.ManyToManyField(blank=True, related_name='tasks', to='core.tag'),
+            model_name="task",
+            name="tag",
+            field=models.ManyToManyField(
+                blank=True, related_name="tasks", to="core.tag"
+            ),
         ),
     ]
