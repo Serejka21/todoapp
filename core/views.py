@@ -11,7 +11,7 @@ from core.models import Task, Tag
 class TaskListView(generic.ListView):
     model = Task
     template_name = "core/index.html"
-    ordering = ["-done"]
+    ordering = ["done", "created_at"]
 
 
 class TaskCreateView(generic.CreateView):
