@@ -37,6 +37,12 @@ class TagListView(generic.ListView):
     ordering = ["name"]
 
 
+class TagCreateView(generic.CreateView):
+    model = Tag
+    fields = "__all__"
+    success_url = reverse_lazy("core:tag-list")
+
+
 class TagUpdateView(generic.UpdateView):
     model = Tag
     fields = "__all__"
