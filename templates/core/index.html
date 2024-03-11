@@ -1,10 +1,28 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>Title</title>
-</head>
-<body>
+{% extends "base.html" %}
 
-</body>
-</html>
+{% block content %}
+<div>
+  <h1 style="text-align: center">To do App
+    <a class="add-button" href="{% url "core:task-create" %}">(add new task)</a>
+  </h1>
+  <div>
+  {% for task in task_list %}
+    <h3>{{ task.task_name }} 
+      {% if task.done %} 
+      <a class="btn btn-secondary" href="{% url "core:task-undo" pk=task.id %}">Undo</a>
+      {% else %}
+      <a class="btn btn-success" href="{% url "core:task-done" pk=task.id %}">Complete</a>
+      {% endif %}
+    </h3>
+    <span>Created: {{ task.created_at }}</span>
+    {% if task.deadline %}
+    <span>Deadline: {{ task.deadline }}</span>
+    {% endif %}
+    <p>Tags: {% for tag in task.tag.all %} {{ tag }}, {% endfor %}</p>
+    <span><a href="{% url "core:task-edit" pk=task.id %}">Update</a> |
+    <a href="{% url "core:task-delete" pk=task.id %}">Delete</a>
+    </span>
+    </div>
+  {% endfor %}
+</div>
+{% endblock %}
